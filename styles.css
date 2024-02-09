@@ -1,0 +1,212 @@
+.leftBanner{
+    margin-right: 15px;
+    background-color: pink;
+    max-width: 28%;
+    width: 100%;
+}
+.d-flex{
+    display: flex;
+}
+.d-grid{
+    display: grid;
+}
+
+h1, h2, article{
+    word-break: break-word;
+}
+.h-100{
+    height: 100%;
+}
+.w-100{
+    width: 100%;
+}
+.bannersContainer{
+    min-height: 80%;
+}
+.landing{
+    height: 100vh;
+    max-width: 1280px;
+    width: 100%;
+    margin: auto;
+}
+article img{
+    /* max-width: 100%;
+    width: 100%; */
+    display: block;
+    max-width: 100%;
+    max-height: 200px;
+    margin: auto;
+}
+header{
+    min-height: 20vh;
+    background-color: lightblue;
+}
+header h1{
+    margin: 0;
+}
+.rightBanner{
+    max-width: 100%;
+    width: 100%;
+}
+body{
+    margin: 0;
+}
+/* article{
+    max-height: 75%;
+    height: 100%;
+} */
+footer{
+    width: 100%;
+    
+    display: flex;
+    min-height: 20%;
+}
+footer .leftFooter{
+    margin-right: 15px;
+    background-color: lightgray;
+    max-width: 28%;
+    width: 100%;
+}
+footer .rightFooter{
+    background-color: lightblue;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+.rightBanner header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.rightBanner h1{
+    padding-left: 20px;
+}
+.rightFooter h2{
+    padding-right: 20px;
+}
+.logo{
+    width: 60px;
+    padding-right: 20px;
+}
+.leftBanner.noflex, .rightBanner.noflex{
+    display: inline-block;
+    vertical-align: top;
+    height: 100%;
+    max-width: 100%;
+
+}
+
+.bannersContainer.noflex{
+    position: relative;
+}
+.rightFooter.noflex{
+    width: 100%;
+    line-height: 20vh;
+}
+footer.noflex{
+    display: block;
+}
+.rightFooter.noflex h2{
+    text-align: end;
+    line-height: 1;
+    display: inline-block;
+    width: calc(100% - 20px);
+    vertical-align: middle;
+    margin: 0;
+}
+.rightBanner.noflex h1{
+    display: inline-block;
+    vertical-align: top;
+    height: 100%;
+    width: calc(100% - 104px);
+
+}
+.rightBanner.noflex header{
+    height: auto;
+    display: block;
+}
+.bannersContainer.grid, footer .grid{
+    grid-template-columns: repeat(1, 1fr 2.5fr);
+    min-height: auto;
+    grid-column-gap: 15px;
+}
+.bannersContainer.grid .leftBanner, footer .grid .leftFooter{
+    max-width: 100%;
+    margin-right: 0;
+}
+.bannersContainer.grid{
+    height: 100%;
+    grid-template-rows: 4fr 1fr;
+    /* grid-template-rows: minmax(80%, auto) 20%; */
+}
+.bannersContainer.grid footer{
+    height: auto;
+    grid-column: 1/3;
+}
+*{
+   word-break: break-word; 
+}
+header.d-grid{
+    display: grid;
+    grid-template-columns: 1fr 80px;
+}
+footer .rightFooter.grid{
+    display: grid;
+    grid-template-columns: 1fr;
+}
+footer .rightFooter.grid h2{
+    text-align: end;
+}
+table{
+    height: 100%;
+    width: 100%;
+}
+.upperLanding{
+    height: 79vh;
+}
+.lowerLanding{
+    height: 20vh;
+}
+.w-30{
+    width: 30%;
+}
+.w-70{
+    width: 70%;
+}
+.leftFooter{
+    background-color: lightgrey;
+}
+.rightFooter{
+    background-color: lightblue;
+}
+.leftFooter,.rightFooter{
+    width: 100%;
+    height: 100%;
+}
+td:first-child{
+    padding-right: 8px;
+}
+td:nth-child(2){
+    padding-left: 8px;
+}
+.headerContainer{
+    vertical-align: top;
+}
+header.noflex{
+    height: 20vh;
+    min-height: auto;
+}
+table.header{
+    background-color: lightblue;
+    height: 20vh;
+}
+table.article{
+    height: fit-content;
+}
+table{
+    border-collapse: collapse;
+}
+td{
+    padding-top: 0;
+    padding-bottom: 0;
+}
