@@ -151,3 +151,71 @@ footer .rightFooter.grid h2{
     position: absolute;
     bottom: 0;
 }
+.genshinLinks{
+    margin-bottom: 30px;
+}
+.bannersContainer{
+    background-color: white;
+}
+footer > div:first-child{
+    background-color: white;
+}
+
+
+
+
+.mondstadtH3{
+    font: 20px "Arial";
+    font-weight: bold;
+    color: gray;
+    text-align: left;
+}
+body{
+    background-color: #1D92E1;
+    font: 17px "Roboto", sans-serif;
+    line-height: 1.3;
+}
+
+a{
+    font: 20px "Roboto";
+    font-style: italic;
+    text-decoration: none;
+
+}
+article#Liyue >h3{
+    color: pink;
+}
+
+a#inazLink{
+    color: violet;
+}
+a#liyueLink{
+    color: rgb(240, 185, 83);
+}
+a#mondLink{
+    color: lightskyblue;
+}
+#Liyue > h3{
+    color: black!important;
+}
+
+
+ul{
+    list-style-type: square;
+}
+ol{
+    list-style-type:lower-latin;
+}
+
+.genshinLinks thead{
+    background-color: violet;
+}
+.genshinLinks{
+    font: 18px "Roboto";
+    text-decoration: none;
+    border-collapse: collapse;
+    border: 2px solid black;
+}
+.genshinLinks td,th{
+    border: 2px solid black;
+}
