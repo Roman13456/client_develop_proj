@@ -219,3 +219,9 @@ ol{
 .genshinLinks td,th{
     border: 2px solid black;
 }
+#Inazuma > h3{
+    color: violet
+}
+dl dt:first-child+dd{
+    color: lightskyblue;
+}
