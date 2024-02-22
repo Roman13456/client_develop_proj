@@ -142,15 +142,19 @@ footer .rightFooter.grid h2{
 }
 
 .regionLinksContainer{
-    position: relative;
+    display: grid;
+    grid-template-columns: minmax(auto, 1fr) auto 1fr;
+
 }
 .regionLinksContainer .wrapper{
     display: flex;
     align-items: center;
-    height: 100%;
-    position: absolute;
-    bottom: 0;
+    /* bottom: 0; */
 }
+
+
+
+
 .genshinLinks{
     margin-bottom: 30px;
 }
@@ -222,6 +226,60 @@ ol{
 #Inazuma > h3{
     color: violet
 }
+
+
+
+
 dl dt:first-child+dd{
     color: lightskyblue;
+}
+.regionLinksContainer .imgWrapper{
+    position: relative;
+    width: fit-content;
+    margin: auto;
+}
+.regionLinksContainer .imgWrapper span{
+    top:5px;
+    right: 5px;
+    position: absolute;
+    font-size: 24px;
+}
+#Liyue >div {
+    float: left;
+    margin: 0 15px 15px 0;
+}
+a{
+    transition:0.3s ease;
+}
+a:visited{
+    color:#55829F ;
+}
+a:active{
+    color:red;
+}
+a:link{
+    color: rgb(47, 255, 151);
+}
+a:hover{
+    color: violet;
+}
+article::before {
+    content: "";
+    display: block;
+    border: 1px solid black;
+    margin: 3px 0;
+  }
+article::after {
+    content: "";
+    display: block;
+    border: 1px solid brown;
+    margin: 3px 0;
+}
+article:nth-child(2)::before{
+    content: "";
+    display: none;
+}
+article:last-child::after{
+    content: "";
+    display: none;
 }
