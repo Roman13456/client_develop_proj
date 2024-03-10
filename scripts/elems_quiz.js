@@ -153,7 +153,6 @@ function replace(obj){
 }
 
 document.addEventListener('click',  {
-    
     handleEvent(event) {
         console.log(event.currentTarget)
         if(!event.target.classList.contains('clickableElemIcon')){
@@ -177,6 +176,7 @@ getQuizResult.addEventListener('click',function(){
         location.reload();
 }
 })
+
 
 function  clearAllChosenItems(){
     elemsInOrder.querySelectorAll('.item').forEach(event=>{
