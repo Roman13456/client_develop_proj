@@ -46,18 +46,24 @@ function shuffleArray(array) {
 shuffleArray(shuffledElements)
 
 const randomElement = genshinElements[Math.floor(Math.random() * genshinElements.length)]
-elemsInOrder.insertAdjacentHTML("afterbegin",`
-    <div class="item">
-    <img class='chosen' id='${randomElement.name}' src='${randomElement.img}'>
+elemsInOrder.insertAdjacentElement("afterbegin",retOrderItem(randomElement.name,randomElement.img))
+
+function retOrderItem(name,img,chosen='true'){
+    const newElement = document.createElement('div')
+    newElement.classList.add('item')
+    newElement.classList.add(`${chosen?'chosen':''}`)
+    newElement.setAttribute("data-name",name)
+    newElement.insertAdjacentHTML('afterbegin',`<img src='${img}'>
     <div style='display: flex;justify-content: center;'>
         <button class='removeFromOrderBtn'><img src='images/cross.png'></button>
-    <div>
-    </div>
-`)
+    <div>`)
+    return newElement
+}
 
 
 
-elemsContainer.addEventListener("click", function(e){
+elemsContainer.addEventListener("click", elemsContainerHandler)
+function elemsContainerHandler(e){
     const clickedElemCell = e.target.closest('.elemCell');
     if(e.target.classList.contains('clickableElemIcon')){    
         if(chosenElemsCount===0){
@@ -75,7 +81,6 @@ elemsContainer.addEventListener("click", function(e){
     }
     const clickedPopup = e.target.closest('#popup');
     if(clickedPopup){
-        
         if(e.target.classList.contains('before')){
             addBeforeElement(genshinElements.find(e=>e.name === clickedElemCell.querySelector('img').getAttribute('id')))
         }else if(e.target.classList.contains('after')){
@@ -84,25 +89,23 @@ elemsContainer.addEventListener("click", function(e){
             replace(genshinElements.find(e=>e.name === clickedElemCell.querySelector('img').getAttribute('id')))
         }
     }
-})
+}
 
-elemsInOrder.addEventListener("click", function(e){
-    
-    const clickedElemCell = e.target.closest('.item');
-    const clickedRemoveBtn = e.target.closest('.removeFromOrderBtn');
+elemsInOrder.onclick = elemsInOrderHandler
+function elemsInOrderHandler(event){
+    const clickedElemItem = event.target.closest('.item');
+    const clickedRemoveBtn = event.target.closest('.removeFromOrderBtn');
     if(clickedRemoveBtn){    
-        clickedElemCell.remove()
+        clickedElemItem.remove()
         chosenElemsCount--
-        if(!chosenElemsCount && document.getElementById ('popup')){
+        if(!chosenElemsCount && document.getElementById ('popup')){//if popup is opened and after remove there is nothing in order - clear it
             document.getElementById ('popup').remove()
         }
-    }else if(clickedElemCell){
-        elemsInOrder.querySelectorAll('.item img').forEach(e=>{
-            e.classList.remove('chosen')
-        })
-        clickedElemCell.querySelector('img').classList.add('chosen')
+    }else if(clickedElemItem){
+        clearAllChosenItems(event.currentTarget)
+        clickedElemItem.classList.add('chosen')
     }
-})
+}
 
 shuffledElements.forEach(e=>{
     const element = document.createElement('div')
@@ -111,102 +114,73 @@ shuffledElements.forEach(e=>{
     elemsContainer.append(element)
 })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function addAfterElement(obj){
-    if(!(Array.from(document.querySelectorAll('.elemsInOrder .item>img')).find(e=>e.getAttribute('id')===obj.name))){
-        const alreadyChosenElement = document.querySelector('.elemsInOrder .item .chosen')
-        elemsInOrder.querySelectorAll('.item img').forEach(e=>{
-            e.classList.remove('chosen')
-        })
-        const newElement = document.createElement('div')
-            newElement.classList.add('item')
-            newElement.insertAdjacentHTML('afterbegin',`
-                <img id='${obj.name}' class='chosen' src='${obj.img}'>
-                <div style='display: flex;justify-content: center;'>
-                    <button class='removeFromOrderBtn'><img src='images/cross.png'></button>
-                <div>
-            `)
+    if(isElementAlreadyUsed(obj)===-1){
+        const alreadyChosenElement = document.querySelector('.elemsInOrder .item.chosen')
+        clearAllChosenItems()
         if(alreadyChosenElement){
-            alreadyChosenElement.closest('.item').after(newElement)
+            alreadyChosenElement.after(retOrderItem(obj.name,obj.img))
             chosenElemsCount++
         }else if(chosenElemsCount===0){
-            elemsInOrder.append(newElement)
+            elemsInOrder.append(retOrderItem(obj.name,obj.img))
             chosenElemsCount++
         }
         
     }
 }
 function addBeforeElement(obj){
-    if(!(Array.from(document.querySelectorAll('.elemsInOrder .item>img')).find(e=>e.getAttribute('id')===obj.name))){
-        const alreadyChosenElement = document.querySelector('.elemsInOrder .item .chosen')
-        elemsInOrder.querySelectorAll('.item img').forEach(e=>{
-            e.classList.remove('chosen')
-        })
-        const newElement = document.createElement('div')
-            newElement.classList.add('item')
-            newElement.insertAdjacentHTML('afterbegin',`
-                <img id='${obj.name}' class='chosen' src='${obj.img}'>
-                <div style='display: flex;justify-content: center;'>
-                    <button class='removeFromOrderBtn'><img src='images/cross.png'></button>
-                <div>
-            `)
+    if(isElementAlreadyUsed(obj)===-1){
+        const alreadyChosenElement = document.querySelector('.elemsInOrder .item.chosen')
+        clearAllChosenItems()
         if(alreadyChosenElement){
-            alreadyChosenElement.closest('.item').before(newElement)
+            alreadyChosenElement.before(retOrderItem(obj.name,obj.img))
             chosenElemsCount++
         }else if(chosenElemsCount===0){
-            elemsInOrder.prepend(newElement)
+            elemsInOrder.prepend(retOrderItem(obj.name,obj.img))
             chosenElemsCount++
         }
         
     }
 }
 function replace(obj){
-    if(!(Array.from(document.querySelectorAll('.elemsInOrder .item>img')).find(e=>e.getAttribute('id')===obj.name))){
-        const alreadyChosenElement = document.querySelector('.elemsInOrder .item .chosen')
+    if(isElementAlreadyUsed(obj)===-1){
+        const alreadyChosenElement = document.querySelector('.elemsInOrder .item.chosen')
+        clearAllChosenItems()
         if(alreadyChosenElement){
-            const newElement = document.createElement('div')
-            newElement.classList.add('item')
-            newElement.insertAdjacentHTML('afterbegin',`
-                <img id='${obj.name}' class='chosen' src='${obj.img}'>
-                <div style='display: flex;justify-content: center;'>
-                    <button class='removeFromOrderBtn'><img src='images/cross.png'></button>
-                <div>
-            `)
-            alreadyChosenElement.closest('.item').replaceWith(newElement)
+            alreadyChosenElement.replaceWith((retOrderItem(obj.name,obj.img)))
         }
     }
 }
 
-document.addEventListener('click', function(event) {
-    if(!event.target.classList.contains('clickableElemIcon')){
-        document.querySelectorAll('#popup').forEach(e=>e.remove())
+document.addEventListener('click',  {
+    handleEvent(event) {
+        if(!event.target.classList.contains('clickableElemIcon')){
+            document.querySelectorAll('#popup').forEach(e=>e.remove())
+        }
     }
 });
 getQuizResult.addEventListener('click',function(){
     if(chosenElemsCount!==7){
         alert('You have to pick all 7 elements to get results')
     }else{
-        const userAnswer = Array.from(document.querySelectorAll('.elemsInOrder .item>img'))
+        const userAnswer = Array.from(document.querySelectorAll('.elemsInOrder .item'))
         let counter = 0
         userAnswer.forEach((e,idx)=>{
-            if (e.getAttribute('id')===genshinElements[idx].name){
+            if (e.dataset.name===genshinElements[idx].name){
                 counter++
             }
         })
         alert(`Your score is ${counter}/7`)
+        elemsContainer.removeEventListener('click', elemsContainerHandler) 
         location.reload();
 }
 })
+
+function  clearAllChosenItems(e=elemsInOrder){
+    e.querySelectorAll('.item').forEach(event=>{
+        event.classList.remove('chosen')
+    })
+}
+function  isElementAlreadyUsed(obj){
+    return (Array.from(document.querySelectorAll('.elemsInOrder .item')).findIndex(e=>e.dataset.name===obj.name))
+}
