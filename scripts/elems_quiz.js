@@ -102,7 +102,7 @@ function elemsInOrderHandler(event){
             document.getElementById ('popup').remove()
         }
     }else if(clickedElemItem){
-        clearAllChosenItems(event.currentTarget)
+        clearAllChosenItems()
         clickedElemItem.classList.add('chosen')
     }
 }
@@ -154,6 +154,7 @@ function replace(obj){
 
 document.addEventListener('click',  {
     handleEvent(event) {
+        console.log(event.currentTarget)
         if(!event.target.classList.contains('clickableElemIcon')){
             document.querySelectorAll('#popup').forEach(e=>e.remove())
         }
@@ -176,8 +177,9 @@ getQuizResult.addEventListener('click',function(){
 }
 })
 
-function  clearAllChosenItems(e=elemsInOrder){
-    e.querySelectorAll('.item').forEach(event=>{
+
+function  clearAllChosenItems(){
+    elemsInOrder.querySelectorAll('.item').forEach(event=>{
         event.classList.remove('chosen')
     })
 }
