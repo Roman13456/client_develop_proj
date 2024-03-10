@@ -46,30 +46,30 @@ function genshinImpactQuiz(){
     alert(`${input} got a score: ${counter}/5`)
 }
 
-function aboutDeveloper(surname, name, position='default'){
-    console.log(`The developer is: ${name} ${surname}. Посада - ${position}`)
-}
-aboutDeveloper('Хромишин','Роман')
-function outputBiggerString (str1, str2){
-    if(str1.length>str2.length){
-        alert(`Рядок "${str1}" більший`)
-    }else if(str2.length>str1.length){
-        alert(`Рядок "${str2}" більший`)
-    }else {
-        alert(`Рядки "${str1}", "${str2}" однакові за розміром`)
-    }
-}
-outputBiggerString("lorem","lorem ipsum")
+// function aboutDeveloper(surname, name, position='default'){
+//     console.log(`The developer is: ${name} ${surname}. Посада - ${position}`)
+// }
+// aboutDeveloper('Хромишин','Роман')
+// function outputBiggerString (str1, str2){
+//     if(str1.length>str2.length){
+//         alert(`Рядок "${str1}" більший`)
+//     }else if(str2.length>str1.length){
+//         alert(`Рядок "${str2}" більший`)
+//     }else {
+//         alert(`Рядки "${str1}", "${str2}" однакові за розміром`)
+//     }
+// }
+// outputBiggerString("lorem","lorem ipsum")
 
 
-document.body.style.background = 'pink'; // колір фону - червоний 
-setTimeout(() => document.body.style.background = '', 5000);//30000
+// document.body.style.background = 'pink'; // колір фону - червоний 
+// setTimeout(() => document.body.style.background = '', 5000);//30000
 
 
-const locationKazuhaPage = document.querySelector(".locationKazuhaPage")
-locationKazuhaPage.addEventListener("click",()=>{
-    location.href = "http://127.0.0.1:5500/kazuha.html"
-})
+// const locationKazuhaPage = document.querySelector(".locationKazuhaPage")
+// locationKazuhaPage.addEventListener("click",()=>{
+//     location.href = "http://127.0.0.1:5500/kazuha.html"
+// })
 
 
 
